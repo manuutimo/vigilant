@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phoenix Rising</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top, #0f0f0f, #420000);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-shadow: 0 0 15px orange;
+    }
+
+    p {
+      max-width: 600px;
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+
+    .phoenix-img {
+      width: 300px;
+      animation: rise 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes rise {
+      from { transform: translateY(20px); }
+      to { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Phoenix_Firebird.svg/800px-Phoenix_Firebird.svg.png" alt="Phoenix" class="phoenix-img">
+  <h1>Phoenix Rising</h1>
+  <p>Reborn from the ashes, the phoenix soars to new heights. Embrace the flames, and rise anew.</p>
+
+</body>
+</html>
