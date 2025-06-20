@@ -1,101 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TikTok Lite</title>
+  <meta charset="UTF-8">
+  <title>Phoenix Rising</title>
   <style>
-    body, html {
+    body {
       margin: 0;
-      padding: 0;
+      background: black;
       overflow: hidden;
-      font-family: sans-serif;
-    }
-
-    .video-container {
-      height: 100vh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-    }
-
-    .video {
-      position: relative;
-      height: 100vh;
-      scroll-snap-align: start;
-    }
-
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .overlay {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      color: white;
-      z-index: 10;
-    }
-
-    .actions {
-      position: absolute;
-      right: 20px;
-      bottom: 100px;
       display: flex;
-      flex-direction: column;
-      gap: 20px;
-      color: white;
-      font-size: 24px;
-      z-index: 10;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    .actions i {
-      cursor: pointer;
+    .flame {
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, orange, red, darkred);
+      border-radius: 50%;
+      position: absolute;
+      animation: rise 3s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-500px) scale(0.5);
+        opacity: 0;
+      }
+    }
+
+    /* Flame generator */
+    .flame-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
     }
   </style>
 </head>
 <body>
+  <div class="flame-container" id="flame-container"></div>
 
-<div class="video-container" id="videoContainer">
-  <div class="video">
-    <video src="video1.mp4" muted loop></video>
-    <div class="overlay">@user1 • #coolvideo</div>
-    <div class="actions">
-      <i>❤️</i>
-      <i>💬</i>
-    </div>
-  </div>
+  <script>
+    const container = document.getElementById('flame-container');
 
-  <div class="video">
-    <video src="video2.mp4" muted loop></video>
-    <div class="overlay">@user2 • #funny</div>
-    <div class="actions">
-      <i>❤️</i>
-      <i>💬</i>
-    </div>
-  </div>
+    function createFlame() {
+      const flame = document.createElement('div');
+      flame.classList.add('flame');
+      flame.style.left = Math.random() * 180 + 'px';
+      flame.style.animationDuration = (Math.random() * 2 + 1) + 's';
+      container.appendChild(flame);
 
-  <!-- Add more video divs as needed -->
-</div>
+      setTimeout(() => {
+        flame.remove();
+      }, 3000);
+    }
 
-<script>
-  const videos = document.querySelectorAll("video");
-
-  function handleScroll() {
-    videos.forEach(video => {
-      const rect = video.getBoundingClientRect();
-      if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-        video.play();
-      } else {
-        video.pause();
-      }
-    });
-  }
-
-  document.getElementById("videoContainer").addEventListener("scroll", handleScroll);
-  window.addEventListener("load", handleScroll);
-</script>
-
+    setInterval(createFlame, 100);
+  </script>
 </body>
 </html>
