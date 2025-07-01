@@ -2,50 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Phoenix Rising</title>
+  <title>CV Builder</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to top, #0f0f0f, #420000);
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f2f2f2;
+    }
+    h1 {
       text-align: center;
     }
-
-    h1 {
-      font-size: 3em;
-      text-shadow: 0 0 15px orange;
+    .container {
+      display: flex;
+      gap: 40px;
     }
-
-    p {
-      max-width: 600px;
-      font-size: 1.2em;
-      opacity: 0.9;
+    form, .cv-preview {
+      flex: 1;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    .phoenix-img {
-      width: 300px;
-      animation: rise 3s ease-in-out infinite alternate;
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
     }
-
-    @keyframes rise {
-      from { transform: translateY(20px); }
-      to { transform: translateY(-20px); }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .cv-section {
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
 
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Phoenix_Firebird.svg/800px-Phoenix_Firebird.svg.png" alt="Phoenix" class="phoenix-img">
-  <h1>Phoenix Rising</h1>
-  <p>Reborn from the ashes, the phoenix soars to new heights. Embrace the flames, and rise anew.</p>
+  <h1>CV Builder</h1>
+  <div class="container">
+    <form id="cvForm">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email">
+
+      <label for="phone">Phone</label>
+      <input type="text" id="phone">
+
+      <label for="education">Education</label>
+      <textarea id="education" rows="4"></textarea>
+
+      <label for="experience">Experience</label>
+      <textarea id="experience" rows="4"></textarea>
+
+      <label for="skills">Skills</label>
+      <textarea id="skills" rows="3"></textarea>
+
+      <button type="button" onclick="generateCV()">Generate CV</button>
+    </form>
+
+    <div class="cv-preview" id="cvPreview">
+      <h2>CV Preview</h2>
+      <div class="cv-section" id="namePreview"></div>
+      <div class="cv-section" id="contactPreview"></div>
+      <div class="cv-section" id="educationPreview"></div>
+      <div class="cv-section" id="experiencePreview"></div>
+      <div class="cv-section" id="skillsPreview"></div>
+    </div>
+  </div>
+
+  <script>
+    function generateCV() {
+      document.getElementById('namePreview').innerHTML = `<h3>${document.getElementById('fullName').value}</h3>`;
+      document.getElementById('contactPreview').innerHTML = `
+        <p>Email: ${document.getElementById('email').value}</p>
+        <p>Phone: ${document.getElementById('phone').value}</p>
+      `;
+      document.getElementById('educationPreview').innerHTML = `<h4>Education</h4><p>${document.getElementById('education').value.replace(/\n/g, '<br>')}</p>`;
+      document.getElementById('experiencePreview').innerHTML = `<h4>Experience</h4><p>${document.getElementById('experience').value.replace(/\n/g, '<br>')}</p>`;
+      document.getElementById('skillsPreview').innerHTML = `<h4>Skills</h4><p>${document.getElementById('skills').value.replace(/\n/g, '<br>')}</p>`;
+    }
+  </script>
 
 </body>
 </html>
